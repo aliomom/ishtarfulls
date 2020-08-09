@@ -1,0 +1,109 @@
+<div *ngIf="painting != null">
+  <!-- For View Image in full screen -->
+  <div id="full-size-img" [class.active]="fullImage">
+    <img #fullSizeImg class="img-fluid" src="{{painting?.image}}" alt="...">
+    <button (click)="hideFullScreenMode()"><span>&times;</span></button>
+  </div>
+  <!-- #For View Image in full screen -->
+
+  <div class="main-carousel">
+    <div class="carousel-cell">
+      <div class="bg-light">
+        <div class="container">
+          <div id="painting-details" class="most-painting-seen mb-0">
+            <div class="col-sm-8 col-md-10 col-xl-11 mx-auto">
+              <div class="row">
+                <div class="col-md-12 col-lg-8 mx-auto image mt-3 pb-3">
+                  <div class="d-lg-none painting-artist">
+                    <img src="{{artist?.path}}" class="" alt="">
+                    <app-follow [ParentType]="'artist'" [ParentId]="artist?.id" class="follow-artist"></app-follow>
+                    <p class="painting-artist-name">
+                      <a routerLink="/artist/{{artist?.id}}">
+                        {{artist?.name}}
+                      </a>
+                    </p>
+                  </div>
+                  <img #mainImg id="main-img"
+                       src="{{painting?.image}}"
+                       (click)="showImageInFullSize()"
+                       class="img-fluid mx-auto"
+                       alt="{{painting?.name}} Image">
+                  <button class="full-size" (click)="showImageInFullSize()"><i class="fas fa-search-plus">
+                  </i> {{'user.painting.details.view-full-image' | translate}}
+                  </button>
+                  <div class="row mt-2 border border-dark p-1 d-none">
+                    <div class="col p-0" *ngFor="let secondPainting of secondaryPaintings">
+                      <img class="img-fluid" src="{{secondPainting?.secondImage}}" alt="..."
+                           (click)="setMainPainting($event)">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-10 mx-auto content mt-2">
+                  <div class="row">
+                    <div class="col-12 mt-3 painting-interaction">
+                      <ul>
+                        <li class="ml-0 my-1 mr-1 d-inline-block">
+                          <app-clap [ParentType]="'painting'" [ParentId]="painting?.id"></app-clap>
+                        </li>
+                        <li class="m-1 d-inline-block">
+                          <app-love [ParentType]="'painting'" [ParentId]="painting?.id"></app-love>
+                        </li>
+                        <li class="my-1 mx-3 buy-painting">
+                          <a
+                             style="color: white">
+                            <mdb-icon fas icon="shopping-cart" (click)="addToCart()"></mdb-icon>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-12">
+                      <h2 class="painting-name mt-3 mt-lg-0"><a
+                        routerLink="/painting/{{painting?.id}}">{{painting?.name}}</a></h2>
+                    </div>
+                    <div class="col-12 painting-artist mb-3 d-lg-block d-none">
+                      <div class="painting-artist-img d-inline-block">
+                        <img src="{{artist?.path}}" class="" alt="">
+                      </div>
+                      <p class="painting-artist-name d-inline-block m-0">
+                        <a routerLink="/artist/{{artist?.id}}">
+                          {{artist?.name}}
+                        </a>
+                        <app-follow [ParentType]="'artist'" [ParentId]="artist?.id" class="follow-artist" *ngIf="artist"></app-follow>
+                      </p>
+                    </div>
+                    <div class="col-12">
+                      <p class="painting-dimension border-bottom border-dark pb-1">
+                        {{'user.painting.details.height' | translate}} <span>{{painting?.height}}
+                        CM</span> | {{'user.painting.details.width' | translate}}:
+                        <span>{{painting?.width}}CM</span></p>
+                      <p class=" border-bottom border-dark pb-1">{{'user.painting.details.art-type' | translate}}:
+                        <span>{{painting?.artType}}</span></p>
+                      <p class=" border-bottom border-dark pb-1">{{'user.painting.details.location' | translate}}:
+                        <span>{{painting?.location ? painting.location : 'Syria'}}</span></p>
+                      <p class=" border-bottom border-dark m-0 pb-1">{{'user.painting.details.price' | translate}}:
+                        <span>{{painting.price | currency: 'EUR': true : undefined : 'fr-FR' }}</span></p>
+                        ({{'user.painting.details.vat' | translate}})
+                    </div>
+                    <div class="col-12">
+                      <p class="painting-story">
+                        <strong class="h4">{{painting?.name}}
+                          {{'user.painting.details.story' | translate}}:</strong>
+                        {{painting?.story ? painting?.story : 'user.painting.details.vat' | translate}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div> <!--End Row-->
+            </div>
+          </div>
+        </div><!--End container-->
+      </div>
+
+      <!-- NOTE, Removed Video Based on Maisaa Response -->
+    </div>
+  </div>
+</div>
+
+<app-painting-knowledge-graph *ngIf="painting !== null && painting !== undefined" [painting]="painting">
+
+</app-painting-knowledge-graph>

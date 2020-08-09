@@ -1,0 +1,32 @@
+<div id="hero">
+  <div class="block-left">
+    <div class="overlay"></div>
+    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'" [isControls]="true">
+      <mdb-carousel-item>
+        <p>
+          {{'user.home.hero.slide-01' | translate}}
+        </p>
+      </mdb-carousel-item>
+      <mdb-carousel-item>
+        <p>
+          {{'user.home.hero.slide-02' | translate}}
+        </p>
+      </mdb-carousel-item>
+      <mdb-carousel-item>
+        <p>
+          {{'user.home.hero.slide-03' | translate}}
+        </p>
+      </mdb-carousel-item>
+    </mdb-carousel>
+    <a routerLink="/about-ishtar" class="read-more">
+      <img src="../../../../../assets/slider-images/7.png" class="left">
+      Read more
+      <img src="../../../../../assets/slider-images/7.png">
+    </a>
+  </div>
+  <div class="block-right">
+    <section class="w-100 d-flex justify-content-center flex-column align-items-center">
+      <app-featured-images class="w-100" style="display: flex; justify-content: center;"></app-featured-images>
+    </section>
+  </div>
+</div>

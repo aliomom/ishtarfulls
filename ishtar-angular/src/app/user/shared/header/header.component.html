@@ -1,0 +1,153 @@
+<div class="header">
+  <div class="spacer"></div>
+  <header class="d-none d-lg-block">
+    <nav class="container-fluid header-nav">
+      <div class="header-top">
+        <div class="row">
+          <div class="col-4">
+            <div class="row">
+              <div class="col-4 pr-0">
+                <img routerLink="/" src="../../../../../assets/logo.png" class="img-fluid logo"
+                     alt="logo image">
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="search-box">
+              <div class="search">
+                <div class="input-search">
+                  <form (ngSubmit)="goToSearch()" [formGroup]="searchFrom">
+                    <input mdbInput type="text" class="form-control py-0" id="inlineFormInputGroup"
+                           placeholder="{{'user.shared.header.search' | translate}}" formControlName="search">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 align-self-center">
+            <ul class="mb-0 pl-0">
+              <li class="float-right">
+                <div class="dropdown">
+                  <span class="login" *ngIf="!userLoggedIn">
+                        <a (click)="showDialog()">{{'user.shared.header.login' | translate}}</a>
+                  </span>
+                  <div mdbDropdown class="letter-circle" *ngIf="userLoggedIn">
+                    <span mdbDropdownToggle class="letter">{{userInfo?.username.substring(0, 1) | uppercase}}</span>
+                    <div class="info">
+                      <span class="email">{{userInfo?.username}}</span>
+                      <div class="login-btn" *ngIf="userLoggedIn">
+                        <a (click)="logout()">{{'user.shared.header.logout' | translate}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="float-right" (click)="openCartDialog()">
+                <a>
+                  <mdb-icon fas icon="shopping-cart"></mdb-icon>
+                </a>
+              </li>
+              <li class="float-right" *ngIf="showLangSwitch">
+                <a (click)="switchLanguage()">
+                  De/En
+                </a>
+              </li>
+              <li class="float-right">
+                <a routerLink="/about-ishtar">
+                  {{'user.shared.header.about' | translate}}
+                </a>
+              </li>
+              <li class="float-right">
+                <a routerLink="/painting-list">
+                  {{'user.shared.header.paintings' | translate}}
+                </a>
+              </li>
+              <li class="float-right">
+                <a routerLink="/artist-list">
+                  {{'user.shared.header.artists' | translate}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- #header-nav -->
+  </header>
+
+  <!--Navbar-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-light d-lg-none" [containerInside]="true">
+    <!-- Collapsible content -->
+    <links>
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/painting-list" class="nav-link waves-light"
+             mdbWavesEffect>{{'user.shared.header.paintings' | translate}}</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/artist-list" class="nav-link waves-light"
+             mdbWavesEffect>{{'user.shared.header.artists' | translate}}</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/about-ishtar" class="nav-link waves-light"
+             mdbWavesEffect>{{'user.shared.header.about' | translate}}</a>
+        </li>
+        <li class="float-right" *ngIf="showLangSwitch">
+          <a (click)="switchLanguage()">
+            De/En
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <div class="search-mobile">
+            <div class="input-mobile-search">
+              <form [formGroup]="searchFrom">
+                <input mdbInput type="text" class="form-control py-0"
+                       placeholder="{{'user.shared.header.search' | translate}}" formControlName="search">
+                <mdb-icon fas icon="search" class="search-btn" (click)="goToSearch()"></mdb-icon>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </links>
+    <a>
+      <div class="dropdown" mdbDropdown>
+        <div class="login-btn" *ngIf="!userLoggedIn">
+          <a class="dropdown-item" (click)="showDialog()">{{'user.shared.header.login' | translate}}</a>
+        </div>
+
+        <div mdbDropdown class="letter-circle"
+             *ngIf="userLoggedIn">
+          <span class="letter" mdbDropdownToggle>{{userInfo?.username.substring(0, 1)}}</span>
+          <div class="info dropdown-menu">
+            <span class="email dropdown-item">{{userInfo?.username}}</span>
+            <div class="dropdown-item">
+              <a routerLink="/profile" style="font-size: 17px; letter-spacing: 1px ;">Profile</a>
+            </div>
+            <div class="login-btn dropdown-item" *ngIf="userLoggedIn">
+              <a class="dropdown-item" (click)="logout()">{{'user.shared.header.logout' | translate}}</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </a>
+    <div class="header-mobile-section d-inline-flex">
+      <div class="row">
+        <div class="col-3 pl-0">
+          <img class="demo-img img-fluid align-text-top" src="../../../../../assets/demo.png" alt="Demo Icon">
+        </div>
+        <div class="col-8 pr-0">
+          <img routerLink="/" src="../../../../../assets/logo.png" class="img-fluid"
+               alt="logo image" style="cursor: pointer;">
+        </div>
+      </div>
+    </div>
+    <!-- Navbar brand -->
+  </mdb-navbar>
+  <!--/.Navbar-->
+
+
+</div>
+

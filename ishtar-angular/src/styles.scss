@@ -1,0 +1,147 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "typography";
+@import "~animate.css/animate.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+}
+
+/*** Admin Loader Style ***/
+.lds-ring {
+  display: inline-block;
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  //left: 50%;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #6c757d transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*Start Search Input style*/
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+/*End Search Input style*/
+
+
+// style for animations
+.container-router {
+  position: relative;
+}
+
+.container-router > * {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+/*Start Style For All td tag in table that contain large text*/
+.table-bordered td, .table-bordered th {
+  vertical-align: middle;
+}
+
+.table-bordered tr {
+  &:last-of-type {
+    border-bottom: 1px solid #dee2e6;
+  }
+}
+
+.td-custom, .td-custom-1 {
+  max-height: 150px;
+  overflow-y: scroll;
+  display: block;
+  border-bottom: none !important;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.td-custom {
+  margin-bottom: .75rem
+}
+
+.td-custom-1 {
+  margin-bottom: .35rem
+}
+
+/*End Style For All td tag in table that contain large text*/
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

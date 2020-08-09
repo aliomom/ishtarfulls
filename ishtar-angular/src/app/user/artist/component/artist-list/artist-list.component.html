@@ -1,0 +1,63 @@
+<div id="artist-list-section">
+  <div *ngIf="filteredList != null">
+    <div class="d-flex justify-content-center artist-list-section"
+         [ngStyle]="{'border-top': search ? '1px solid #333333' : 'none'}">
+      <!-- region Filters -->
+      <div class="col-2 p-3 d-none d-lg-block" id="artist-sidebar" *ngIf="filter === true">
+        <div>
+          <h5>Filter By Art Type</h5>
+          <button mdbBtn class="btn-light" (click)="cancelFilterByArtType()">{{'user.artist.list.all' | translate}}</button>
+          <button mdbBtn class="btn-light" *ngFor="let artType of activeTypes"
+                  (click)="filterByArtType(artType)"
+                  [ngClass]="artType === activeArtType ? 'active' : ''">{{artType}}</button>
+        </div>
+      </div>
+      <!-- endregion Filters -->
+      <div class="col-12 col-lg-10 px-5">
+        <div class="row" *ngIf="search">
+          <div class="col-12 col-lg-6 sort-artist mb-lg-2 my-3">
+            <ul class="navbar-nav nav-flex-icons d-inline-block">
+              <li class="nav-item">
+                <a class="nav-link">
+                  <div class="btn-group" mdbDropdown>
+                    {{'user.artist.list.sort-by' | translate}} <span class="d-none d-md-block pl-1">{{'user.artist.list.flolow-number' | translate}}</span>
+                    <mdb-icon fas icon="angle-down fa-fw mt-1" mdbDropdownToggle></mdb-icon>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary sort-artist-dropdown">
+                      <a class="dropdown-item" (click)="sortArtistsByFollowerNumberDesc()">{{'user.artist.list.desc' | translate}}</a>
+                      <a class="dropdown-item" (click)="sortArtistsByFollowerNumberAsc()">{{'user.artist.list.asc' | translate}}</a>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons d-inline-block d-lg-none ml-3">
+              <li class="nav-item">
+                <a class="nav-link">
+                  <div class="btn-group" mdbDropdown>
+                    {{'user.artist.list.fliter-by' | translate}} <span class="d-none d-md-block pl-1">{{'user.artist.list.art-type' | translate}}</span>
+                    <mdb-icon fas icon="angle-down fa-fw mt-1" mdbDropdownToggle></mdb-icon>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary sort-artist-dropdown">
+                      <a class="dropdown-item" (click)="cancelFilterByArtType()">{{'user.artist.list.all' | translate}}</a>
+                      <a class="dropdown-item" *ngFor="let i of activeTypes" (click)="filterByArtType(i)">{{i}}</a>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <section id="photos" class="row">
+          <div *ngFor="let artist of filteredList.slice(0, this.visibleArtistSize)"
+               class="col-xs-6 col-sm-6 col-md-6 col-xl-3 mx-auto">
+            <app-artist-card [artist]="artist" class></app-artist-card>
+          </div>
+        </section>
+        <div id="add-more-btn" class="row" (click)="addMoreArtists()" *ngIf="originalList?.length > visibleArtistSize">
+          <a>
+            <mdb-icon fas icon="angle-double-down" size="2x"></mdb-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
