@@ -1,6 +1,5 @@
 FROM php:7.2.3-fpm
 
-LABEL author="Taha ZGUED" 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget zip unzip \
@@ -23,4 +22,4 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
 WORKDIR /home/wwwroot/
 
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["php-fpm".]
